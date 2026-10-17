@@ -44,6 +44,15 @@
             { "title": "宇治の渡り", "file": "audio/01_sarashina/05-02.mp3", "duration": 504 },
             { "title": "夜の川の歌声", "file": "audio/01_sarashina/05-03.mp3", "duration": 476 }
           ]
+        },
+        {
+          "title": "第6章　さらしなの月",
+          "blocks": [
+            { "title": "阿弥陀さまの夢", "file": "audio/01_sarashina/06-01.mp3", "duration": 428 },
+            { "title": "鏡に映っていたもの", "file": "audio/01_sarashina/06-02.mp3", "duration": 420 },
+            { "title": "をばすての月", "file": "audio/01_sarashina/06-03.mp3", "duration": 444 },
+            { "title": "千年を旅した日記", "file": "audio/01_sarashina/06-04.mp3", "duration": 497 }
+          ]
         }
       ]
     }
