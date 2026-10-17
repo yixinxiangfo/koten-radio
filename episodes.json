@@ -20,6 +20,14 @@
             { "title": "源氏の五十余巻", "file": "audio/01_sarashina/02-02.mp3", "duration": 472 },
             { "title": "きさきの位も何にかはせむ", "file": "audio/01_sarashina/02-03.mp3", "duration": 433 }
           ]
+        },
+        {
+          "title": "第3章　猫と姉",
+          "blocks": [
+            { "title": "迷いこんだ猫", "file": "audio/01_sarashina/03-01.mp3", "duration": 432 },
+            { "title": "月夜の姉", "file": "audio/01_sarashina/03-02.mp3", "duration": 432 },
+            { "title": "鏡の夢", "file": "audio/01_sarashina/03-03.mp3", "duration": 583 }
+          ]
         }
       ]
     }
