@@ -12,6 +12,14 @@
             { "title": "竹芝の言い伝え", "file": "audio/01_sarashina/01-02.mp3", "duration": 548 },
             { "title": "足柄山と富士の山", "file": "audio/01_sarashina/01-03.mp3", "duration": 563 }
           ]
+        },
+        {
+          "title": "第2章　源氏物語を手に",
+          "blocks": [
+            { "title": "京の都へ", "file": "audio/01_sarashina/02-01.mp3", "duration": 417 },
+            { "title": "源氏の五十余巻", "file": "audio/01_sarashina/02-02.mp3", "duration": 472 },
+            { "title": "きさきの位も何にかはせむ", "file": "audio/01_sarashina/02-03.mp3", "duration": 433 }
+          ]
         }
       ]
     }
