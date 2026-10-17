@@ -116,7 +116,9 @@ def main():
     with tempfile.TemporaryDirectory() as tmp:
         wav = Path(tmp) / "out.wav"
         wav.write_bytes(base64.b64decode(audio[-1]["data"]))
-        subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", str(wav), "-ac", "1",
+        # スマホのスピーカーでも聞こえるよう、ラジオ番組の標準的な音量（-16 LUFS）にそろえる
+        subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", str(wav),
+                        "-af", "loudnorm=I=-16:TP=-1.5:LRA=11", "-ar", "24000", "-ac", "1",
                         "-b:a", CONFIG["mp3_bitrate"], str(out)], check=True)
 
     paid_equiv = cost_jpy(usage)
