@@ -1,0 +1,12 @@
+.env
+.env.*
+*.pcm
+*.wav
+.DS_Store
+__pycache__/
+tts/usage_log.jsonl
+samples/
+work/
+# 作業用の指示書と元ファイル
+CLAUDE.md
+/01-01.txt

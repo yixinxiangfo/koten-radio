@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>古典と歴史の朗読ラジオ</title>
+<style>
+  :root {
+    --bg: #faf6ef;
+    --card: #ffffff;
+    --text: #2b2420;
+    --muted: #6b5f55;
+    --accent: #8a4b2a;
+    --accent-text: #ffffff;
+    --line: #e4d9cb;
+    --now: #f3e4d4;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1c1916;
+      --card: #26221e;
+      --text: #f2ebe2;
+      --muted: #b8aa9b;
+      --accent: #d9935f;
+      --accent-text: #1c1916;
+      --line: #3a342e;
+      --now: #3a2e24;
+    }
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
+    font-size: 20px;
+    line-height: 1.6;
+  }
+  main { max-width: 640px; margin: 0 auto; padding: 16px 16px 48px; }
+  h1 { font-size: 24px; margin: 8px 0 16px; text-align: center; letter-spacing: 0.05em; }
+
+  .player {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 20px 16px;
+    text-align: center;
+  }
+  .now-program { color: var(--muted); font-size: 18px; }
+  .now-title { font-size: 24px; font-weight: bold; margin: 4px 0 12px; }
+  .time { color: var(--muted); font-size: 18px; font-variant-numeric: tabular-nums; }
+  .progress { width: 100%; height: 32px; margin: 8px 0; accent-color: var(--accent); }
+
+  .controls { display: flex; justify-content: center; align-items: center; gap: 16px; margin: 8px 0 4px; }
+  button {
+    font: inherit;
+    color: var(--text);
+    background: var(--card);
+    border: 2px solid var(--line);
+    border-radius: 12px;
+    padding: 10px 14px;
+    min-height: 56px;
+    cursor: pointer;
+  }
+  .play {
+    width: 112px; height: 112px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: var(--accent-text);
+    border: none;
+    font-size: 26px;
+    font-weight: bold;
+  }
+  .small { font-size: 17px; min-width: 76px; }
+
+  .options { margin-top: 16px; display: grid; gap: 10px; }
+  .row { display: flex; align-items: center; justify-content: center; gap: 8px; flex-wrap: wrap; }
+  .row-label { color: var(--muted); font-size: 17px; width: 100%; }
+  .row button { font-size: 18px; min-width: 80px; }
+  .row button[aria-pressed="true"] { background: var(--accent); color: var(--accent-text); border-color: var(--accent); }
+  .sleep-status { color: var(--muted); font-size: 17px; min-height: 1.6em; }
+
+  .list { margin-top: 28px; }
+  .program-title { font-size: 22px; margin: 24px 0 4px; }
+  .program-sub { color: var(--muted); font-size: 17px; margin: 0 0 8px; }
+  .chapter-title { font-size: 19px; margin: 16px 0 6px; color: var(--muted); }
+  .block {
+    display: flex; justify-content: space-between; gap: 12px;
+    width: 100%;
+    text-align: left;
+    margin: 6px 0;
+    padding: 14px 16px;
+    font-size: 19px;
+  }
+  .block .len { color: var(--muted); white-space: nowrap; }
+  .block.current { background: var(--now); border-color: var(--accent); }
+  .msg { text-align: center; color: var(--muted); }
+</style>
+</head>
+<body>
+<main>
+  <h1>古典と歴史の朗読ラジオ</h1>
+
+  <section class="player" aria-label="再生">
+    <div class="now-program" id="nowProgram">　</div>
+    <div class="now-title" id="nowTitle">読み込み中…</div>
+    <input class="progress" id="progress" type="range" min="0" max="100" value="0" step="1" aria-label="再生位置">
+    <div class="time"><span id="cur">0:00</span> / <span id="dur">0:00</span></div>
+    <div class="controls">
+      <button class="small" id="back" aria-label="15秒もどる">15秒<br>もどる</button>
+      <button class="play" id="play" aria-label="再生">再生</button>
+      <button class="small" id="next" aria-label="次のお話へ">次へ</button>
+    </div>
+
+    <div class="options">
+      <div class="row" id="speedRow">
+        <span class="row-label">読む速さ</span>
+        <button data-rate="0.9">ゆっくり</button>
+        <button data-rate="1">ふつう</button>
+        <button data-rate="1.2">はやめ</button>
+      </div>
+      <div class="row" id="sleepRow">
+        <span class="row-label">おやすみタイマー</span>
+        <button data-min="30">30分</button>
+        <button data-min="60">60分</button>
+        <button data-min="0">なし</button>
+      </div>
+      <div class="sleep-status" id="sleepStatus"></div>
+    </div>
+  </section>
+
+  <section class="list" id="list" aria-label="番組の一覧"></section>
+  <audio id="audio" preload="none"></audio>
+</main>
+
+<script>
+(function () {
+  var audio = document.getElementById('audio');
+  var playBtn = document.getElementById('play');
+  var progress = document.getElementById('progress');
+  var curEl = document.getElementById('cur');
+  var durEl = document.getElementById('dur');
+  var listEl = document.getElementById('list');
+  var nowProgram = document.getElementById('nowProgram');
+  var nowTitle = document.getElementById('nowTitle');
+  var sleepStatus = document.getElementById('sleepStatus');
+
+  var KEY = 'koten-radio-v1';
+  var tracks = [];      // すべてのブロックを一列に並べたもの
+  var index = 0;
+  var pendingSeek = 0;  // 再生開始時に飛ぶ位置（前回の続き）
+  var seeking = false;
+  var sleepTimer = null, sleepEnd = 0, sleepTick = null;
+
+  function load() {
+    try { return JSON.parse(localStorage.getItem(KEY)) || {}; } catch (e) { return {}; }
+  }
+  function save(patch) {
+    try {
+      var s = load();
+      for (var k in patch) s[k] = patch[k];
+      localStorage.setItem(KEY, JSON.stringify(s));
+    } catch (e) { /* 保存できなくても再生は続ける */ }
+  }
+
+  function fmt(sec) {
+    sec = Math.max(0, Math.floor(sec || 0));
+    var h = Math.floor(sec / 3600), m = Math.floor(sec % 3600 / 60), s = sec % 60;
+    var mm = h ? String(m).padStart(2, '0') : String(m);
+    return (h ? h + ':' : '') + mm + ':' + String(s).padStart(2, '0');
+  }
+  function fmtLen(sec) { return Math.max(1, Math.round(sec / 60)) + '分'; }
+
+  function render(data) {
+    var html = '';
+    data.programs.forEach(function (p) {
+      html += '<h2 class="program-title">' + p.title + '</h2>';
+      if (p.subtitle) html += '<p class="program-sub">' + p.subtitle + '</p>';
+      p.chapters.forEach(function (c, ci) {
+        html += '<h3 class="chapter-title">' + c.title + '</h3>';
+        c.blocks.forEach(function (b, bi) {
+          var i = tracks.length;
+          tracks.push({ program: p.title, chapter: c.title, title: b.title, file: b.file, duration: b.duration });
+          html += '<button class="block" data-i="' + i + '"><span>' + (bi + 1) + '. ' + b.title +
+                  '</span><span class="len">' + fmtLen(b.duration) + '</span></button>';
+        });
+      });
+    });
+    listEl.innerHTML = html;
+    listEl.addEventListener('click', function (e) {
+      var btn = e.target.closest('.block');
+      if (!btn) return;
+      select(Number(btn.dataset.i), 0);
+      audio.play();
+    });
+  }
+
+  function select(i, startAt) {
+    index = Math.min(Math.max(i, 0), tracks.length - 1);
+    var t = tracks[index];
+    audio.src = t.file;
+    pendingSeek = startAt || 0;
+    nowProgram.textContent = t.program + '　' + t.chapter;
+    nowTitle.textContent = t.title;
+    durEl.textContent = fmt(t.duration);
+    curEl.textContent = fmt(pendingSeek);
+    progress.max = Math.round(t.duration);
+    progress.value = pendingSeek;
+    document.querySelectorAll('.block').forEach(function (b) {
+      b.classList.toggle('current', Number(b.dataset.i) === index);
+    });
+    save({ index: index, time: pendingSeek });
+    if ('mediaSession' in navigator) {
+      navigator.mediaSession.metadata = new MediaMetadata({ title: t.title, artist: t.program, album: t.chapter });
+    }
+  }
+
+  audio.addEventListener('loadedmetadata', function () {
+    if (pendingSeek) { audio.currentTime = pendingSeek; pendingSeek = 0; }
+    progress.max = Math.round(audio.duration);
+    durEl.textContent = fmt(audio.duration);
+  });
+  var lastSave = 0;
+  audio.addEventListener('timeupdate', function () {
+    if (!seeking) progress.value = audio.currentTime;
+    curEl.textContent = fmt(audio.currentTime);
+    var now = Date.now();
+    if (now - lastSave > 5000) { lastSave = now; save({ index: index, time: audio.currentTime }); }
+  });
+  audio.addEventListener('play', function () { playBtn.textContent = '一時停止'; playBtn.setAttribute('aria-label', '一時停止'); });
+  audio.addEventListener('pause', function () {
+    playBtn.textContent = '再生'; playBtn.setAttribute('aria-label', '再生');
+    save({ index: index, time: audio.currentTime });
+  });
+  audio.addEventListener('ended', function () {
+    if (index < tracks.length - 1) {
+      var rate = audio.playbackRate;
+      select(index + 1, 0);
+      audio.playbackRate = rate;
+      audio.play();
+    } else {
+      save({ index: 0, time: 0 });
+      nowTitle.textContent = 'おしまい。ありがとうございました';
+    }
+  });
+
+  playBtn.addEventListener('click', function () {
+    if (audio.paused) audio.play(); else audio.pause();
+  });
+  document.getElementById('back').addEventListener('click', function () {
+    audio.currentTime = Math.max(0, audio.currentTime - 15);
+  });
+  document.getElementById('next').addEventListener('click', function () {
+    if (index < tracks.length - 1) { select(index + 1, 0); applyRate(); audio.play(); }
+  });
+  progress.addEventListener('input', function () { seeking = true; curEl.textContent = fmt(progress.value); });
+  progress.addEventListener('change', function () {
+    seeking = false;
+    if (audio.readyState > 0) audio.currentTime = Number(progress.value);
+    else pendingSeek = Number(progress.value);
+  });
+
+  // 読む速さ
+  var rate = Number(load().rate) || 1;
+  function applyRate() {
+    audio.defaultPlaybackRate = rate;
+    audio.playbackRate = rate;
+    document.querySelectorAll('#speedRow button').forEach(function (b) {
+      b.setAttribute('aria-pressed', String(Number(b.dataset.rate) === rate));
+    });
+  }
+  document.getElementById('speedRow').addEventListener('click', function (e) {
+    var b = e.target.closest('button'); if (!b) return;
+    rate = Number(b.dataset.rate); save({ rate: rate }); applyRate();
+  });
+  audio.addEventListener('loadedmetadata', applyRate);
+
+  // おやすみタイマー
+  function setSleep(min) {
+    clearTimeout(sleepTimer); clearInterval(sleepTick);
+    sleepTimer = sleepTick = null;
+    document.querySelectorAll('#sleepRow button').forEach(function (b) {
+      b.setAttribute('aria-pressed', String(Number(b.dataset.min) === min && min > 0));
+    });
+    if (!min) { sleepStatus.textContent = ''; return; }
+    sleepEnd = Date.now() + min * 60000;
+    sleepTimer = setTimeout(function () {
+      audio.pause(); setSleep(0); sleepStatus.textContent = 'おやすみなさい';
+    }, min * 60000);
+    var show = function () {
+      sleepStatus.textContent = 'あと ' + Math.ceil((sleepEnd - Date.now()) / 60000) + '分で止まります';
+    };
+    show(); sleepTick = setInterval(show, 30000);
+  }
+  document.getElementById('sleepRow').addEventListener('click', function (e) {
+    var b = e.target.closest('button'); if (!b) return;
+    setSleep(Number(b.dataset.min));
+  });
+
+  // ロック画面からの操作
+  if ('mediaSession' in navigator) {
+    var ms = navigator.mediaSession;
+    var on = function (action, fn) { try { ms.setActionHandler(action, fn); } catch (e) {} };
+    on('play', function () { audio.play(); });
+    on('pause', function () { audio.pause(); });
+    on('seekbackward', function () { audio.currentTime = Math.max(0, audio.currentTime - 15); });
+    on('seekforward', function () { audio.currentTime = Math.min(audio.duration || 0, audio.currentTime + 15); });
+    on('previoustrack', function () { if (index > 0) { select(index - 1, 0); applyRate(); audio.play(); } });
+    on('nexttrack', function () { if (index < tracks.length - 1) { select(index + 1, 0); applyRate(); audio.play(); } });
+  }
+
+  fetch('episodes.json', { cache: 'no-cache' })
+    .then(function (r) { return r.json(); })
+    .then(function (data) {
+      render(data);
+      var s = load();
+      var i = (typeof s.index === 'number' && s.index < tracks.length) ? s.index : 0;
+      select(i, s.time || 0);
+      applyRate();
+    })
+    .catch(function () {
+      nowTitle.textContent = '番組を読み込めませんでした';
+      listEl.innerHTML = '<p class="msg">少し時間をおいて、ページを開きなおしてください。</p>';
+    });
+})();
+</script>
+</body>
+</html>
