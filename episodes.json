@@ -28,6 +28,14 @@
             { "title": "月夜の姉", "file": "audio/01_sarashina/03-02.mp3", "duration": 432 },
             { "title": "鏡の夢", "file": "audio/01_sarashina/03-03.mp3", "duration": 583 }
           ]
+        },
+        {
+          "title": "第4章　宮仕え",
+          "blocks": [
+            { "title": "はじめての宮仕え", "file": "audio/01_sarashina/04-01.mp3", "duration": 483 },
+            { "title": "物語の夢から覚めて", "file": "audio/01_sarashina/04-02.mp3", "duration": 370 },
+            { "title": "春と秋の語らい", "file": "audio/01_sarashina/04-03.mp3", "duration": 453 }
+          ]
         }
       ]
     }
