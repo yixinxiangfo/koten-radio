@@ -36,6 +36,14 @@
             { "title": "物語の夢から覚めて", "file": "audio/01_sarashina/04-02.mp3", "duration": 370 },
             { "title": "春と秋の語らい", "file": "audio/01_sarashina/04-03.mp3", "duration": 453 }
           ]
+        },
+        {
+          "title": "第5章　旅と祈り",
+          "blocks": [
+            { "title": "石山へ、雪の道", "file": "audio/01_sarashina/05-01.mp3", "duration": 495 },
+            { "title": "宇治の渡り", "file": "audio/01_sarashina/05-02.mp3", "duration": 504 },
+            { "title": "夜の川の歌声", "file": "audio/01_sarashina/05-03.mp3", "duration": 476 }
+          ]
         }
       ]
     }
