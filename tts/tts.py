@@ -119,12 +119,14 @@ def main():
         subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", str(wav), "-ac", "1",
                         "-b:a", CONFIG["mp3_bitrate"], str(out)], check=True)
 
-    c = cost_jpy(usage)
+    paid_equiv = cost_jpy(usage)
+    c = 0.0 if CONFIG.get("free_tier") else paid_equiv
     with USAGE_LOG.open("a") as f:
         f.write(json.dumps({"out": str(out), "voice": args.voice, "model": CONFIG["model"],
                             "input_tokens": usage.get("total_input_tokens"),
                             "output_tokens": usage.get("total_output_tokens"),
-                            "cost_jpy": round(c, 3)}, ensure_ascii=False) + "\n")
+                            "cost_jpy": round(c, 3),
+                            "paid_equiv_jpy": round(paid_equiv, 3)}, ensure_ascii=False) + "\n")
 
     dur = duration_sec(out)
     expected = len(text) / CONFIG["chars_per_minute"] * 60

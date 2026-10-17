@@ -8,7 +8,9 @@
         {
           "title": "第1章　物語に恋した少女",
           "blocks": [
-            { "title": "あづまぢの道の果てより", "file": "audio/01_sarashina/01-01.mp3", "duration": 431 }
+            { "title": "あづまぢの道の果てより", "file": "audio/01_sarashina/01-01.mp3", "duration": 431 },
+            { "title": "竹芝の言い伝え", "file": "audio/01_sarashina/01-02.mp3", "duration": 548 },
+            { "title": "足柄山と富士の山", "file": "audio/01_sarashina/01-03.mp3", "duration": 563 }
           ]
         }
       ]
