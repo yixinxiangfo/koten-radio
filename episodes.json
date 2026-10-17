@@ -8,50 +8,153 @@
         {
           "title": "第1章　物語に恋した少女",
           "blocks": [
-            { "title": "あづまぢの道の果てより", "file": "audio/01_sarashina/01-01.mp3", "duration": 431 },
-            { "title": "竹芝の言い伝え", "file": "audio/01_sarashina/01-02.mp3", "duration": 548 },
-            { "title": "足柄山と富士の山", "file": "audio/01_sarashina/01-03.mp3", "duration": 563 }
+            {
+              "title": "あづまぢの道の果てより",
+              "file": "audio/01_sarashina/01-01.mp3",
+              "duration": 431
+            },
+            {
+              "title": "竹芝の言い伝え",
+              "file": "audio/01_sarashina/01-02.mp3",
+              "duration": 548
+            },
+            {
+              "title": "足柄山と富士の山",
+              "file": "audio/01_sarashina/01-03.mp3",
+              "duration": 563
+            }
           ]
         },
         {
           "title": "第2章　源氏物語を手に",
           "blocks": [
-            { "title": "京の都へ", "file": "audio/01_sarashina/02-01.mp3", "duration": 417 },
-            { "title": "源氏の五十余巻", "file": "audio/01_sarashina/02-02.mp3", "duration": 472 },
-            { "title": "きさきの位も何にかはせむ", "file": "audio/01_sarashina/02-03.mp3", "duration": 433 }
+            {
+              "title": "京の都へ",
+              "file": "audio/01_sarashina/02-01.mp3",
+              "duration": 417
+            },
+            {
+              "title": "源氏の五十余巻",
+              "file": "audio/01_sarashina/02-02.mp3",
+              "duration": 472
+            },
+            {
+              "title": "きさきの位も何にかはせむ",
+              "file": "audio/01_sarashina/02-03.mp3",
+              "duration": 433
+            }
           ]
         },
         {
           "title": "第3章　猫と姉",
           "blocks": [
-            { "title": "迷いこんだ猫", "file": "audio/01_sarashina/03-01.mp3", "duration": 432 },
-            { "title": "月夜の姉", "file": "audio/01_sarashina/03-02.mp3", "duration": 432 },
-            { "title": "鏡の夢", "file": "audio/01_sarashina/03-03.mp3", "duration": 583 }
+            {
+              "title": "迷いこんだ猫",
+              "file": "audio/01_sarashina/03-01.mp3",
+              "duration": 432
+            },
+            {
+              "title": "月夜の姉",
+              "file": "audio/01_sarashina/03-02.mp3",
+              "duration": 432
+            },
+            {
+              "title": "鏡の夢",
+              "file": "audio/01_sarashina/03-03.mp3",
+              "duration": 583
+            }
           ]
         },
         {
           "title": "第4章　宮仕え",
           "blocks": [
-            { "title": "はじめての宮仕え", "file": "audio/01_sarashina/04-01.mp3", "duration": 483 },
-            { "title": "物語の夢から覚めて", "file": "audio/01_sarashina/04-02.mp3", "duration": 370 },
-            { "title": "春と秋の語らい", "file": "audio/01_sarashina/04-03.mp3", "duration": 453 }
+            {
+              "title": "はじめての宮仕え",
+              "file": "audio/01_sarashina/04-01.mp3",
+              "duration": 483
+            },
+            {
+              "title": "物語の夢から覚めて",
+              "file": "audio/01_sarashina/04-02.mp3",
+              "duration": 370
+            },
+            {
+              "title": "春と秋の語らい",
+              "file": "audio/01_sarashina/04-03.mp3",
+              "duration": 453
+            }
           ]
         },
         {
           "title": "第5章　旅と祈り",
           "blocks": [
-            { "title": "石山へ、雪の道", "file": "audio/01_sarashina/05-01.mp3", "duration": 495 },
-            { "title": "宇治の渡り", "file": "audio/01_sarashina/05-02.mp3", "duration": 504 },
-            { "title": "夜の川の歌声", "file": "audio/01_sarashina/05-03.mp3", "duration": 476 }
+            {
+              "title": "石山へ、雪の道",
+              "file": "audio/01_sarashina/05-01.mp3",
+              "duration": 495
+            },
+            {
+              "title": "宇治の渡り",
+              "file": "audio/01_sarashina/05-02.mp3",
+              "duration": 504
+            },
+            {
+              "title": "夜の川の歌声",
+              "file": "audio/01_sarashina/05-03.mp3",
+              "duration": 476
+            }
           ]
         },
         {
           "title": "第6章　さらしなの月",
           "blocks": [
-            { "title": "阿弥陀さまの夢", "file": "audio/01_sarashina/06-01.mp3", "duration": 428 },
-            { "title": "鏡に映っていたもの", "file": "audio/01_sarashina/06-02.mp3", "duration": 420 },
-            { "title": "をばすての月", "file": "audio/01_sarashina/06-03.mp3", "duration": 444 },
-            { "title": "千年を旅した日記", "file": "audio/01_sarashina/06-04.mp3", "duration": 497 }
+            {
+              "title": "阿弥陀さまの夢",
+              "file": "audio/01_sarashina/06-01.mp3",
+              "duration": 428
+            },
+            {
+              "title": "鏡に映っていたもの",
+              "file": "audio/01_sarashina/06-02.mp3",
+              "duration": 420
+            },
+            {
+              "title": "をばすての月",
+              "file": "audio/01_sarashina/06-03.mp3",
+              "duration": 444
+            },
+            {
+              "title": "千年を旅した日記",
+              "file": "audio/01_sarashina/06-04.mp3",
+              "duration": 497
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "02_ise",
+      "title": "伊勢物語",
+      "subtitle": "歌とともに語られる、ある男の一生",
+      "chapters": [
+        {
+          "title": "第1章　むかし、男ありけり",
+          "blocks": [
+            {
+              "title": "むかし、男ありけり",
+              "file": "audio/02_ise/01-01.mp3",
+              "duration": 537
+            },
+            {
+              "title": "春日野の若紫",
+              "file": "audio/02_ise/01-02.mp3",
+              "duration": 433
+            },
+            {
+              "title": "ながめ暮らしつ",
+              "file": "audio/02_ise/01-03.mp3",
+              "duration": 444
+            }
           ]
         }
       ]
