@@ -196,6 +196,26 @@
               "duration": 460
             }
           ]
+        },
+        {
+          "title": "第4章　幼なじみ",
+          "blocks": [
+            {
+              "title": "筒井筒",
+              "file": "audio/02_ise/04-01.mp3",
+              "duration": 458
+            },
+            {
+              "title": "風吹けば、たつた山",
+              "file": "audio/02_ise/04-02.mp3",
+              "duration": 604
+            },
+            {
+              "title": "花橘と、つくも髪",
+              "file": "audio/02_ise/04-03.mp3",
+              "duration": 612
+            }
+          ]
         }
       ]
     }
