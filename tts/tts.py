@@ -132,7 +132,7 @@ def main():
 
     dur = duration_sec(out)
     expected = len(text) / CONFIG["chars_per_minute"] * 60
-    flag = "  ※短すぎる：途中で切れている可能性" if dur < expected * 0.6 else ""
+    flag = "  ※短すぎる：途中で切れている可能性" if dur < expected * 0.88 else ""
     print(f"  完了 {dur:.1f}秒（目安 {expected:.0f}秒）約{c:.2f}円 / 累計 約{spent_jpy():.1f}円{flag}")
 
 
