@@ -156,6 +156,26 @@
               "duration": 444
             }
           ]
+        },
+        {
+          "title": "第2章　かなわぬ恋",
+          "blocks": [
+            {
+              "title": "関守よ、眠っておくれ",
+              "file": "audio/02_ise/02-01.mp3",
+              "duration": 507
+            },
+            {
+              "title": "月やあらぬ",
+              "file": "audio/02_ise/02-02.mp3",
+              "duration": 399
+            },
+            {
+              "title": "白玉か何ぞと",
+              "file": "audio/02_ise/02-03.mp3",
+              "duration": 470
+            }
+          ]
         }
       ]
     }
