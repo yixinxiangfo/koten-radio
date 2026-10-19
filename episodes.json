@@ -236,6 +236,26 @@
               "duration": 548
             }
           ]
+        },
+        {
+          "title": "第6章　伊勢へ",
+          "blocks": [
+            {
+              "title": "狩の使",
+              "file": "audio/02_ise/06-01.mp3",
+              "duration": 419
+            },
+            {
+              "title": "夢かうつつか",
+              "file": "audio/02_ise/06-02.mp3",
+              "duration": 441
+            },
+            {
+              "title": "つひにゆく道",
+              "file": "audio/02_ise/06-03.mp3",
+              "duration": 494
+            }
+          ]
         }
       ]
     }
