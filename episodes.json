@@ -216,6 +216,26 @@
               "duration": 612
             }
           ]
+        },
+        {
+          "title": "第5章　桜と友と母",
+          "blocks": [
+            {
+              "title": "世の中にたえて桜の",
+              "file": "audio/02_ise/05-01.mp3",
+              "duration": 485
+            },
+            {
+              "title": "雪ふみわけて",
+              "file": "audio/02_ise/05-02.mp3",
+              "duration": 473
+            },
+            {
+              "title": "さらぬ別れ",
+              "file": "audio/02_ise/05-03.mp3",
+              "duration": 548
+            }
+          ]
         }
       ]
     }
